@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <div :class="size" class="aselect">
-            <span class="title">{{title}}</span>
+            <span class="title">{{ title }}</span>
             <div class="selector" @click="toggle()">
                 <div class="label">
                     <span>{{ titleValue }}</span>
@@ -9,8 +9,8 @@
                 <div class="arrow" :class="{ expanded: visible }"></div>
                 <div :class="{ hidden: !visible, visible }">
                     <ul>
-                        <li :class="{ current: listOptions === valueItem }" v-for="(item,index) in listOptions" :key="index"
-                            @click="select(item)">{{ item }}
+                        <li :class="{ current: listOptions === valueItem }" v-for="(item, index) in listOptions"
+                            :key="index" @click="select(item)">{{ item }}
                         </li>
                     </ul>
                 </div>
@@ -21,7 +21,7 @@
 
 <script>
 export default {
-    props: ['value', 'list','title','size'],
+    props: ['value', 'list', 'title', 'size'],
     data() {
         return {
             visible: false,
@@ -75,20 +75,23 @@ h1 {
 .aselect {
     width: 370px;
     margin: 20px auto;
-    .title{
+
+    .title {
         font-size: 30px;
     }
-    &.xl{
+
+    &.xl {
         width: 790px;
     }
-    &.lg{
+
+    &.lg {
         width: 545px;
     }
+
     .selector {
         border: 2px solid #B2B2B2;
         background: #ffffff;
         position: relative;
-        z-index: 1;
         border-radius: 10px;
 
         .arrow {
@@ -118,20 +121,26 @@ h1 {
     }
 
     ul {
-        width: 100%;
+        width: 101%;
         list-style-type: none;
         padding: 0;
         margin: 0;
         font-size: 16px;
-        border: 1px solid gainsboro;
+        border: 2px solid #b2b2b2;
         position: absolute;
         z-index: 1;
         background: #fff;
+        top: 90%;
+        border-top: unset;
+        right: -2px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
     }
 
     li {
         padding: 12px;
         color: #666;
+        font-size: 23px;
 
         &:hover {
             color: white;
