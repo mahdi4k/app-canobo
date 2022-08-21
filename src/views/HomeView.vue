@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="form-section pt-4 ps-1">
-        <div class="header d-flex">
+        <div class="header flex-wrap d-flex">
           <div class="input-section pe-5 pb-5">
             <p class="mb-2">Please Enter your run name</p>
             <div class="position-relative">
@@ -25,11 +25,11 @@
           <div class="tab-section ps-4">
             <p class="mb-2">Method</p>
             <div class="d-flex">
-              <div class=" tab-item raw-tab me-3">
+              <div @click="activeClass" class=" tab-item raw-tab me-3 active">
                 <span class="name">RAW</span>
                 <span class="title">Upload the data manually</span>
               </div>
-              <div class="tab-item api-tab">
+              <div @click="activeClass" class="tab-item api-tab">
                 <span class="name">API</span>
                 <span class="title">Use GEO Database</span>
               </div>
@@ -252,6 +252,9 @@ export default {
   methods: {
     mobileUser() {
       this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    },
+    activeClass(e){
+      console.log(e);
     }
   }
 };
@@ -312,6 +315,10 @@ export default {
           width: 520px;
           border-radius: 10px;
           font-size: 30px;
+
+          @media (max-width:1550px) {
+            width: 380px;
+          }
         }
 
         .runInputIcon {
@@ -329,12 +336,27 @@ export default {
       .tab-section {
         border-bottom: 1px solid #ccc;
 
+        @media (max-width:1200px) {
+          border-bottom: unset;
+        }
+
         .tab-item {
           padding: 10px 20px;
           border: 2px solid #BEBEBE;
           background-color: #F7F7F7;
           border-radius: 10px;
           width: 460px;
+          cursor: pointer;
+
+          @media (max-width:1550px) {
+            width: 390px;
+            white-space: nowrap;
+          }
+
+          @media (max-width:1400px) {
+            width: 317px;
+            white-space: nowrap;
+          }
 
           .name {
             background-color: #707070;
@@ -349,6 +371,20 @@ export default {
             padding-left: 10px;
             padding-right: 30px;
             color: #BEBEBE;
+          }
+
+          &.active {
+            border: 2px solid #E52620;
+
+            .title {
+              font-size: 1.5rem;
+              color: #343434;
+            }
+
+            .name {
+              background-color: #E52620;
+              color: white;
+            }
           }
         }
       }
@@ -495,6 +531,23 @@ export default {
       background-color: #ffffff;
       color: #E52620;
       padding: 3px 60px;
+    }
+  }
+
+  @media (max-width:1400px) {
+    .right {
+      button {
+
+        font-size: 25px;
+      }
+
+      .analysis {
+        padding: 3px 60px;
+      }
+
+      .demo {
+        padding: 3px 40px;
+      }
     }
   }
 }
