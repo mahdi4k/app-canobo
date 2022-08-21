@@ -25,74 +25,93 @@
           <div class="tab-section ps-4">
             <p class="mb-2">Method</p>
             <div class="d-flex">
-              <div @click="activeClass" class=" tab-item raw-tab me-3 active">
+              <div @click="uploadManually" :class="uploadTab ? 'active' : ''" class=" tab-item raw-tab me-3">
                 <span class="name">RAW</span>
                 <span class="title">Upload the data manually</span>
               </div>
-              <div @click="activeClass" class="tab-item api-tab">
+              <div @click="useDatabase" :class="DatabaseTab ? 'active' : ''" class="tab-item api-tab">
                 <span class="name">API</span>
                 <span class="title">Use GEO Database</span>
               </div>
             </div>
           </div>
         </div>
-        <div class="section-style Annotations pt-5">
-          <div class="header d-flex justify-content-between align-items-center">
-            <div>
-              <span class="title me-3">Annotations</span>
-              <img :src="check" alt="">
+        <div v-if="uploadTab">
+          <div class="section-style Annotations pt-5">
+            <div class="header d-flex justify-content-between align-items-center">
+              <div>
+                <span class="title me-3">Annotations</span>
+                <img :src="check" alt="">
+              </div>
+              <div data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">
+                <img :src="question" alt="">
+              </div>
             </div>
-            <div data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">
-              <img :src="question" alt="">
-            </div>
-          </div>
-          <div class="d-flex flex-wrap mx-auto select-boxes">
-            <select-box title="Data Value Type:" :value="value" :list="list" />
-            <select-box class="mx-5" title="Data Type:" :value="value2" :list="list2" />
-            <select-box title="Gene Level::" :value="value2" :list="list2" />
-            <select-box class="me-5" size="xl" title="Gene Level::" :value="value2" :list="list2" />
-            <select-box title="Gene Level::" :value="value2" :list="list2" />
-          </div>
-        </div>
-        <div class="section-style Filtering pt-5">
-          <div class="header d-flex justify-content-between align-items-center">
-            <div>
-              <span class="title me-3">Filtering</span>
-              <img :src="check" alt="">
-            </div>
-            <div>
-              <img :src="question" alt="">
+            <div class="d-flex flex-wrap mx-auto select-boxes">
+              <select-box title="Data Value Type:" :value="value" :list="listDataValueType" />
+              <select-box class="mx-5" title="Data Type:" :value="value2" :list="listDataValue" />
+              <select-box title="Gene Level:" :value="value2" :list="GeneValue" />
+              <select-box class="me-5" size="xl" title="Gene annotation:" :value="value2" :list="GeneAnnotation" />
+              <select-box title="Organism" :value="value2" :list="Organism" />
             </div>
           </div>
-          <div class="d-flex flex-wrap mx-auto select-boxes">
-            <RangeSlider />
-            <select-box class="ml-10" size="lg" title="Data Value Type:" :value="value" :list="list" />
+          <div class="section-style Filtering pt-5">
+            <div class="header d-flex justify-content-between align-items-center">
+              <div>
+                <span class="title me-3">Filtering</span>
+                <img :src="check" alt="">
+              </div>
+              <div>
+                <img :src="question" alt="">
+              </div>
+            </div>
+            <div class="d-flex flex-wrap mx-auto select-boxes">
+              <RangeSlider />
+              <select-box class="ml-10" size="lg" title="Data Transformation:" :value="value" :list="Transformation" />
 
+            </div> 
+          </div>
+          <div class="section-style Method pt-5">
+            <div class="header d-flex justify-content-between align-items-center">
+              <div>
+                <span class="title me-3">Method</span>
+                <img :src="check" alt="">
+              </div>
+              <div>
+                <img :src="question" alt="">
+              </div>
+            </div>
+            <div class="d-flex flex-wrap mx-auto select-boxes">
+              <select-box title="Library Usage :" :value="value" :list="Library" />
+              <select-box class="mx-5" title="Batch effect Removal (For Metadata):" :value="value2" :list="BatchEffect" />
+            </div>
+          </div>
+          <div class="dropzone-section">
+            <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"></vue-dropzone>
           </div>
         </div>
-        <div class="section-style Method pt-5">
-          <div class="header d-flex justify-content-between align-items-center">
-            <div>
-              <span class="title me-3">Method</span>
-              <img :src="check" alt="">
-            </div>
-            <div>
-              <img :src="question" alt="">
+        <div v-if="DatabaseTab">
+          <div class="form-section DatabaseTab pt-4 ps-1">
+            <div class="header flex-wrap d-flex">
+              <div class="input-section pe-5">
+                <p class="mb-2">Please Enter your Accession Number:</p>
+                <div class="position-relative">
+                  <input class="runName" type="text">
+                </div>
+              </div>
             </div>
           </div>
-          <div class="d-flex flex-wrap mx-auto select-boxes">
-            <select-box title="Data Value Type:" :value="value" :list="list" />
-            <select-box class="mx-5" title="Data Type:" :value="value2" :list="list2" />
-          </div>
-        </div>
-        <div class="dropzone-section">
-          <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"></vue-dropzone>
         </div>
       </div>
       <div class="bottom-section">
         <div class="left">
           <span class="note">NOTE</span>
-          <span class="text">By Pressing “Start Analysis” you will accept all terms and conditions </span>
+          <span v-if="uploadTab" class="text">By Pressing “Start Analysis” you will accept all terms and conditions
+          </span>
+          <span v-if="DatabaseTab" class="text DatabaseTab">This platform can only used for Microarray Expression files
+            at this
+            point.
+            By Pressing “Start Analysis” you will accept all terms and conditions </span>
         </div>
         <div class="right">
           <button class="demo">Demo Run</button>
@@ -219,9 +238,50 @@ export default {
       close,
       close2,
       modal,
+      uploadTab: true,
+      DatabaseTab: false,
       isMobile: false,
       value: 'Please choose an item',
-      list: ["Orange", "Apple", "Kiwi", "Lemon", "Pineapple"],
+      listDataValueType: ["Raw", "Normalized"],
+      listDataValue: ["Microarray ", "RNA-Seq (Count)"],
+      GeneValue: ["Mean ", "Median", "Sum"],
+      GeneAnnotation: ["Affymetrix Human Genome U95 (chip hgu95a) ",
+       "Affymetrix Human Genome U95 (chip hgu95av2)", 
+      "Affymetrix Human Genome U95 (chip hgu95b)", "Affymetrix Human Genome U95 (chip hgu95c)",
+      "Affymetrix Human Genome U95 (chip hgu95d)",
+      "Affymetrix Human Genome U95 (chip hgu95e)",
+      "Affymetrix Human Genome U133 (chip hgu133a)",
+      "Affymetrix Human Genome U133 (chip hgu133b)",
+      "Affymetrix Human Genome U133plus2 (hgu133plus2)",
+      "Affymetrix Human Genome U133plus2_PM (hgu133plus2pm)",
+      "Illumina HumanHT-12 V3 BeadArray",
+      "Illumina HumanHT-12 V4 BeadArray",
+      "Illumina HumanRef-8 V2 BeadArray",
+      "Illumina HumanRef-8 V3 BeadArray",
+      "Illumina HumanWG-6 V2 BeadArray",
+      "Illumina HumanWG-6 V3 BeadArray",
+      "Agilent Human 1 cDNA Microarray (4100A)",
+      "Agilent Human 2 cDNA Microarray (4101A)",
+      "Agilent Human 1A cDNA Microarray (4110B)",
+      "Agilent Human 1B cDNA Microarray (4111A)",
+      "Agilent Human Genome Whole Microarray (4x44k/4112)",
+      "Agilent H"
+      ],
+      Organism:["H.sapiense (Human)",
+      "M.musculus (Mouse)",
+      "R.norvegicus (Rat)",
+      "C.eleganse (Roundworm)"
+      ,"D.melanogaster (Fruitfly)"
+      ,"D.rerio (Zebrafish)",
+      "S.cerevisiae (Yeast)",
+      "E.coli (Gut Bacteria)",
+      "A.thaliana (Arabidopsis)",
+      "B.taurus (Cow)",
+      "G.gallus (Chicken)"
+      ],
+      BatchEffect:["sva(ComBat)"],
+      Library:["Limma","EdgeR","DeSeq2","NOISeq"],
+      Transformation:["Log2 Transformation ","Relative log expression","Trimmed mean of M-values"],
       value2: 'Please choose an item',
       list2: ["Orange", "Appl2e", "Ki2wi", "Le2mon", "Pineap2ple"],
       dropzoneOptions: {
@@ -253,8 +313,13 @@ export default {
     mobileUser() {
       this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     },
-    activeClass(e){
-      console.log(e);
+    uploadManually() {
+      this.uploadTab = true
+      this.DatabaseTab = false
+    },
+    useDatabase() {
+      this.uploadTab = false
+      this.DatabaseTab = true
     }
   }
 };
@@ -262,6 +327,10 @@ export default {
 <style lang="scss">
 .ml-10 {
   margin-left: 13%;
+
+  @media (max-width: 1400px) {
+    margin-left: 4%;
+  }
 }
 
 .text-blue {
@@ -345,7 +414,7 @@ export default {
           border: 2px solid #BEBEBE;
           background-color: #F7F7F7;
           border-radius: 10px;
-          width: 460px;
+          width: 475px;
           cursor: pointer;
 
           @media (max-width:1550px) {
@@ -509,6 +578,10 @@ export default {
 
     }
 
+    .DatabaseTab {
+      max-width: 650px;
+    }
+
   }
 
   .right {
@@ -645,6 +718,12 @@ export default {
     &.modal-xl {
       min-width: 1451px !important;
     }
+  }
+}
+
+.DatabaseTab {
+  .input-section {
+    border-bottom: unset !important;
   }
 }
 </style>

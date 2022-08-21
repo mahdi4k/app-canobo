@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div @focus="handleFocus" @focusout="handleFocusOut" tabindex="0" id="app">
         <div :class="size" class="aselect">
             <span class="title">{{ title }}</span>
             <div class="selector" @click="toggle()">
@@ -53,6 +53,12 @@ export default {
         },
         select(option) {
             this.titleValue = option;
+        },
+        handleFocus() {
+            this.visible = false
+        },
+        handleFocusOut() {
+            this.visible = false
         }
     }
 }
@@ -75,13 +81,21 @@ h1 {
 .aselect {
     width: 370px;
     margin: 20px auto;
-
+    cursor: pointer;
     .title {
         font-size: 30px;
     }
 
     &.xl {
         width: 790px;
+        @media (max-width: 1400px){
+            width: 616px;
+            margin-left: 50px;
+        }
+        ul{
+            width: 100.5%;
+            right: -2px;
+        }
     }
 
     &.lg {
