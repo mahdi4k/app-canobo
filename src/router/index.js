@@ -1,8 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import Toast from "vue-toastification";
+import "vue-toastification/dist/index.css";
 
+const options = {
+  // You can set your default options here
+};
 Vue.use(VueRouter)
+Vue.use(Toast, options);
 
 const routes = [
   {

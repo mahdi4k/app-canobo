@@ -224,9 +224,10 @@ import RangeSlider from "@/components/RangeSlider.vue";
 import vue2Dropzone from 'vue2-dropzone'
 import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 import uploadfile from "@/assets/uploadfile.svg";
+import Message from "../components/Message.vue";
 
 export default {
-  components: { SelectBox, RangeSlider, vueDropzone: vue2Dropzone },
+  components: { SelectBox, RangeSlider, vueDropzone: vue2Dropzone, Message },
 
   data() {
     return {
@@ -308,6 +309,10 @@ export default {
   },
   mounted() {
     this.mobileUser()
+    this.$toast(Message,{
+        icon: false
+    });
+
   },
   methods: {
     mobileUser() {
