@@ -1,21 +1,18 @@
 <template>
   <div id="app">
     <nav>
-       
+
     </nav>
-    <router-view/>
-      <footer>
-    <Footer/>
-  </footer>
+    <router-view />
+    
   </div>
 </template>
 <script>
 import Footer from "@/components/Footer.vue";
 export default {
-  components:{Footer}
+  components: { Footer }
 }
 </script>
 <style>
 @import '@/assets/base.scss';
-
 </style>

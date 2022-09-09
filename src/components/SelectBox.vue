@@ -4,7 +4,7 @@
             <span class="title">{{ title }}</span>
             <div class="selector" @click="toggle()">
                 <div class="label">
-                    <span>{{ titleValue }}</span>
+                    <span :class="itemSelected ? 'item-selected' : ''">{{ titleValue }}</span>
                 </div>
                 <div class="arrow" :class="{ expanded: visible }"></div>
                 <div :class="{ hidden: !visible, visible }">
@@ -27,7 +27,8 @@ export default {
             visible: false,
             listItem: [],
             titleValue: null,
-            valueItem: this.value
+            valueItem: this.value,
+            itemSelected:false
         }
     },
     mounted() {
@@ -53,6 +54,7 @@ export default {
         },
         select(option) {
             this.titleValue = option;
+            this.itemSelected = true
         },
         handleFocus() {
             this.visible = false
@@ -82,6 +84,7 @@ h1 {
     width: 370px;
     margin: 20px auto;
     cursor: pointer;
+
     .title {
         font-size: 30px;
     }
@@ -149,16 +152,17 @@ h1 {
         right: -2px;
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
+        max-height: 343px;
+        overflow: auto;
     }
 
     li {
         padding: 12px;
         color: #666;
         font-size: 23px;
-
+        margin: 7px;
         &:hover {
-            color: white;
-            background: seagreen;
+            background: rgb(245 245 245);
         }
     }
 
@@ -173,5 +177,8 @@ h1 {
     .visible {
         visibility: visible;
     }
+}
+.item-selected{
+    color: black;
 }
 </style>

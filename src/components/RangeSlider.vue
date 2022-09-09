@@ -175,14 +175,14 @@ input[type=range]::-webkit-slider-runnable-track {
 
 input[type=range]::-webkit-slider-thumb {
     box-shadow: none;
-    border: 1px solid #E52620;
-    height: 13px;
-    width: 13px;
+    border: 3px solid #E52620;
+    height: 20px;
+    width: 20px;
     border-radius: 50px;
     background: #ffffff;
     cursor: pointer;
     -webkit-appearance: none;
-    margin-top: -4px;
+    margin-top: -8px;
 }
 
 input[type=range]:focus::-webkit-slider-runnable-track {

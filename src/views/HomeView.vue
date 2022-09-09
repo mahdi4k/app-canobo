@@ -41,7 +41,7 @@
             <div class="header d-flex justify-content-between align-items-center">
               <div>
                 <span class="title me-3">Annotations</span>
-                <img :src="check" alt="">
+                <!-- <img :src="check" alt=""> -->
               </div>
               <div data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">
                 <img :src="question" alt="">
@@ -59,7 +59,7 @@
             <div class="header d-flex justify-content-between align-items-center">
               <div>
                 <span class="title me-3">Filtering</span>
-                <img :src="check" alt="">
+                <!-- <img :src="check" alt=""> -->
               </div>
               <div>
                 <img :src="question" alt="">
@@ -69,13 +69,13 @@
               <RangeSlider />
               <select-box class="ml-10" size="lg" title="Data Transformation:" :value="value" :list="Transformation" />
 
-            </div> 
+            </div>
           </div>
           <div class="section-style Method pt-5">
             <div class="header d-flex justify-content-between align-items-center">
               <div>
                 <span class="title me-3">Method</span>
-                <img :src="check" alt="">
+                <!-- <img :src="check" alt=""> -->
               </div>
               <div>
                 <img :src="question" alt="">
@@ -83,7 +83,8 @@
             </div>
             <div class="d-flex flex-wrap mx-auto select-boxes">
               <select-box title="Library Usage :" :value="value" :list="Library" />
-              <select-box class="mx-5" title="Batch effect Removal (For Metadata):" :value="value2" :list="BatchEffect" />
+              <select-box class="mx-5" title="Batch effect Removal (For Metadata):" :value="value2"
+                :list="BatchEffect" />
             </div>
           </div>
           <div class="dropzone-section">
@@ -114,8 +115,10 @@
             By Pressing “Start Analysis” you will accept all terms and conditions </span>
         </div>
         <div class="right">
-          <button class="demo">Demo Run</button>
-          <button class="analysis">Start Analysis</button>
+          <button @click="showAlert" class="demo">Demo Run</button>
+          <router-link to="table">
+            <button class="analysis">Start Analysis</button>
+          </router-link>
         </div>
       </div>
     </div>
@@ -207,11 +210,16 @@
         </div>
       </div>
     </div>
+    <footer>
+      <Footer />
+    </footer>
   </div>
+
 </template>
 
 <script>
 // @ is an alias to /src
+import Footer from "@/components/Footer.vue";
 import simpleMicrogenetics2 from "@/assets/simpleMicrogenetics2.svg";
 import inputIcon from "@/assets/inputIcon.svg";
 import check from "@/assets/check.svg";
@@ -227,7 +235,7 @@ import uploadfile from "@/assets/uploadfile.svg";
 import Message from "../components/Message.vue";
 
 export default {
-  components: { SelectBox, RangeSlider, vueDropzone: vue2Dropzone, Message },
+  components: { SelectBox, RangeSlider, vueDropzone: vue2Dropzone, Message ,Footer},
 
   data() {
     return {
@@ -247,42 +255,42 @@ export default {
       listDataValue: ["Microarray ", "RNA-Seq (Count)"],
       GeneValue: ["Mean ", "Median", "Sum"],
       GeneAnnotation: ["Affymetrix Human Genome U95 (chip hgu95a) ",
-       "Affymetrix Human Genome U95 (chip hgu95av2)", 
-      "Affymetrix Human Genome U95 (chip hgu95b)", "Affymetrix Human Genome U95 (chip hgu95c)",
-      "Affymetrix Human Genome U95 (chip hgu95d)",
-      "Affymetrix Human Genome U95 (chip hgu95e)",
-      "Affymetrix Human Genome U133 (chip hgu133a)",
-      "Affymetrix Human Genome U133 (chip hgu133b)",
-      "Affymetrix Human Genome U133plus2 (hgu133plus2)",
-      "Affymetrix Human Genome U133plus2_PM (hgu133plus2pm)",
-      "Illumina HumanHT-12 V3 BeadArray",
-      "Illumina HumanHT-12 V4 BeadArray",
-      "Illumina HumanRef-8 V2 BeadArray",
-      "Illumina HumanRef-8 V3 BeadArray",
-      "Illumina HumanWG-6 V2 BeadArray",
-      "Illumina HumanWG-6 V3 BeadArray",
-      "Agilent Human 1 cDNA Microarray (4100A)",
-      "Agilent Human 2 cDNA Microarray (4101A)",
-      "Agilent Human 1A cDNA Microarray (4110B)",
-      "Agilent Human 1B cDNA Microarray (4111A)",
-      "Agilent Human Genome Whole Microarray (4x44k/4112)",
-      "Agilent H"
+        "Affymetrix Human Genome U95 (chip hgu95av2)",
+        "Affymetrix Human Genome U95 (chip hgu95b)", "Affymetrix Human Genome U95 (chip hgu95c)",
+        "Affymetrix Human Genome U95 (chip hgu95d)",
+        "Affymetrix Human Genome U95 (chip hgu95e)",
+        "Affymetrix Human Genome U133 (chip hgu133a)",
+        "Affymetrix Human Genome U133 (chip hgu133b)",
+        "Affymetrix Human Genome U133plus2 (hgu133plus2)",
+        "Affymetrix Human Genome U133plus2_PM (hgu133plus2pm)",
+        "Illumina HumanHT-12 V3 BeadArray",
+        "Illumina HumanHT-12 V4 BeadArray",
+        "Illumina HumanRef-8 V2 BeadArray",
+        "Illumina HumanRef-8 V3 BeadArray",
+        "Illumina HumanWG-6 V2 BeadArray",
+        "Illumina HumanWG-6 V3 BeadArray",
+        "Agilent Human 1 cDNA Microarray (4100A)",
+        "Agilent Human 2 cDNA Microarray (4101A)",
+        "Agilent Human 1A cDNA Microarray (4110B)",
+        "Agilent Human 1B cDNA Microarray (4111A)",
+        "Agilent Human Genome Whole Microarray (4x44k/4112)",
+        "Agilent H"
       ],
-      Organism:["H.sapiense (Human)",
-      "M.musculus (Mouse)",
-      "R.norvegicus (Rat)",
-      "C.eleganse (Roundworm)"
-      ,"D.melanogaster (Fruitfly)"
-      ,"D.rerio (Zebrafish)",
-      "S.cerevisiae (Yeast)",
-      "E.coli (Gut Bacteria)",
-      "A.thaliana (Arabidopsis)",
-      "B.taurus (Cow)",
-      "G.gallus (Chicken)"
+      Organism: ["H.sapiense (Human)",
+        "M.musculus (Mouse)",
+        "R.norvegicus (Rat)",
+        "C.eleganse (Roundworm)"
+        , "D.melanogaster (Fruitfly)"
+        , "D.rerio (Zebrafish)",
+        "S.cerevisiae (Yeast)",
+        "E.coli (Gut Bacteria)",
+        "A.thaliana (Arabidopsis)",
+        "B.taurus (Cow)",
+        "G.gallus (Chicken)"
       ],
-      BatchEffect:["sva(ComBat)"],
-      Library:["Limma","EdgeR","DeSeq2","NOISeq"],
-      Transformation:["Log2 Transformation ","Relative log expression","Trimmed mean of M-values"],
+      BatchEffect: ["sva(ComBat)"],
+      Library: ["Limma", "EdgeR", "DeSeq2", "NOISeq"],
+      Transformation: ["Log2 Transformation ", "Relative log expression", "Trimmed mean of M-values"],
       value2: 'Please choose an item',
       list2: ["Orange", "Appl2e", "Ki2wi", "Le2mon", "Pineap2ple"],
       dropzoneOptions: {
@@ -309,14 +317,17 @@ export default {
   },
   mounted() {
     this.mobileUser()
-    this.$toast(Message,{
-        icon: false
-    });
+
 
   },
   methods: {
     mobileUser() {
       this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    },
+    showAlert() {
+      this.$toast(Message, {
+        icon: false
+      });
     },
     uploadManually() {
       this.uploadTab = true
@@ -385,7 +396,7 @@ export default {
         .runName {
           border: unset;
           background-color: #EFEFEF;
-          padding: 7px 10px 7px 40px;
+          padding: 12px 10px 12px 52px;
           width: 520px;
           border-radius: 10px;
           font-size: 30px;
@@ -397,11 +408,11 @@ export default {
 
         .runInputIcon {
           position: absolute;
-          left: 10px;
-          top: 15px;
+          left: 19px;
+          top: 21px;
 
           img {
-            width: 20px;
+            width: 25px;
           }
 
         }
@@ -415,8 +426,8 @@ export default {
         }
 
         .tab-item {
-          padding: 10px 20px;
-          border: 2px solid #BEBEBE;
+          padding: 13px 20px;
+          border: 2.5px solid #BEBEBE;
           background-color: #F7F7F7;
           border-radius: 10px;
           width: 475px;
@@ -448,7 +459,7 @@ export default {
           }
 
           &.active {
-            border: 2px solid #E52620;
+            border: 2.5px solid #E52620;
 
             .title {
               font-size: 1.5rem;

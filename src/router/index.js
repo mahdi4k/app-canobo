@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import TableView from '../views/TableView.vue'
+import Loading from '../views/Loading.vue'
+import Chart from '../views/Chart.vue'
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 
@@ -21,6 +23,16 @@ const routes = [
     path: '/table',
     name: 'table',
     component: TableView
+  },
+  {
+    path: '/loading',
+    name: 'loading',
+    component: Loading
+  },
+  {
+    path: '/chart',
+    name: 'chart',
+    component: Chart
   }
 ]
 
