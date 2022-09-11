@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import TableView from '../views/TableView.vue'
 import Loading from '../views/Loading.vue'
-import Chart from '../views/Chart.vue'
+import ChartView from '../views/ChartView.vue'
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 
@@ -32,7 +32,7 @@ const routes = [
   {
     path: '/chart',
     name: 'chart',
-    component: Chart
+    component: ChartView
   }
 ]
 

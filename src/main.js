@@ -6,7 +6,8 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import "bootstrap"
 import "./assets/custom.scss";
 Vue.config.productionTip = false
-
+import HighchartsVue from "highcharts-vue";
+Vue.use(HighchartsVue);
 
 
 new Vue({
