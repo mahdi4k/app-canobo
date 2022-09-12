@@ -229,40 +229,7 @@ export default {
   }
 }
 
-.input-section {
-  .runName {
-    border: unset;
-    background-color: #EFEFEF;
-    padding: 10px 10px 10px 30px;
-    width: 520px;
-    border-radius: 10px;
-    font-size: 30px;
 
-    @media (max-width:1550px) {
-      width: 380px;
-    }
-
-    &.md {
-      width: 420px;
-      padding-left: 40px;
-    }
-
-    &.runNameSearch {
-      padding: 10px 10px 10px 60px;
-    }
-  }
-
-  .runInputIcon {
-    position: absolute;
-    left: 19px;
-    top: 1px;
-
-    img {
-      width: 25px;
-    }
-
-  }
-}
 
 .header {
   justify-content: space-between;
@@ -373,7 +340,42 @@ export default {
   }
 }
 </style>
-<style>
+<style lang="scss">
+.input-section {
+  .runName {
+    border: unset;
+    background-color: #EFEFEF;
+    padding: 10px 10px 10px 30px;
+    width: 520px;
+    border-radius: 10px;
+    font-size: 30px;
+
+    @media (max-width:1550px) {
+      width: 380px;
+    }
+
+    &.md {
+      width: 420px;
+      padding-left: 40px;
+    }
+
+    &.runNameSearch {
+      padding: 10px 10px 10px 60px;
+    }
+  }
+
+  .runInputIcon {
+    position: absolute;
+    left: 19px;
+    top: 1px;
+
+    img {
+      width: 25px;
+    }
+
+  }
+}
+
 .borderTopBottom {
   border-top: 14px solid #E52620;
   border-bottom: 14px solid #E52620;
@@ -410,7 +412,8 @@ export default {
   justify-content: center;
   margin-bottom: 30px;
 }
-a{
+
+a {
   text-decoration: unset !important;
 }
 </style>
