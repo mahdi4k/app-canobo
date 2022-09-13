@@ -40,7 +40,10 @@ export default {
                 second: 'Congratulations! Your analysis ends perfectly',
                 third: 'Thanks for being patient'
             }
-        }, 10000);
+        }, 8000);
+        setTimeout(() => {
+            this.$router.push({ path: '/chart' })
+        }, 11000);
     }
 }
 </script>

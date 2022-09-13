@@ -2,94 +2,9 @@
   <div>
     <div class="borderTopBottom">
       <div class="container">
-        <div class="header">
-          <div class="d-flex align-items-center">
-            <img class="logo-section" :src="simpleMicrogenetics2" alt="" />
-            <span class="ms-3">GEO-A</span>
-          </div>
-          <div class="input-section py-5">
-            <div class="position-relative">
-              <input
-                placeholder="Search Results"
-                class="runName runNameSearch"
-                type="text"
-              />
-              <span class="runInputIcon"><img :src="search" alt="" /></span>
-            </div>
-          </div>
-        </div>
-        <div class="accordian-section">
-          <div class="header px-3 mb-4">
-            <h1 class="fw-bolder">Quality Check</h1>
-            <span class="cursor-pointer" @click="toggleAccordian"
-              ><img
-                :class="showAccordian ? '' : 'rotate-img'"
-                :src="arrow"
-                alt=""
-            /></span>
-          </div>
-          <div
-            :class="showAccordian ? 'showAccrodian' : ''"
-            class="content-section"
-          >
-            <div class="row mx-0">
-              <div class="col-9 left-section">
-                <div class="row">
-                  <div class="col-5">
-                    <div>
-                      <span>Data Type</span>
-                      <span class="fw-bolder">Microarray </span>
-                    </div>
-                    <div>
-                      <span>Platform:</span>
-                      <span class="fw-bolder">GPL 95</span>
-                    </div>
-                    <div>
-                      <span>Matched probs:</span>
-                      <span class="fw-bolder">63745</span>
-                    </div>
-                  </div>
-                  <div class="col-5 ps-8">
-                    <div>
-                      <span>Samples Size: </span>
-                      <span class="fw-bolder">36 </span>
-                    </div>
-                    <div>
-                      <span>Batch effect removal::</span>
-                      <span>(Comming Soon)</span>
-                    </div>
-                    <div>
-                      <span>Dataset ID:</span>
-                      <span class="fw-bolder">GSE 2345884</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-3 ps-4">
-                <div class="right-section">
-                  <span>Cohorts:</span>
-                  <div class="d-flex flex-res mt-2">
-                    <div class="box-sections">
-                      <span class="blue-dot"></span>
-                      <span>Tumor</span>
-                    </div>
-                    <div class="box-sections ms-4">
-                      <span class="red-dot"></span>
-                      <span>Normal</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="step-sections mt-5">
-          <span class="active">Principal component analysis</span>
-          <span>Dot Plot</span>
-          <span>Heatmap</span>
-          <span>Bar Plot</span>
-          <span>Density Plot</span>
-        </div>
+        <Header2 />
+        <Accordian />
+        <Selection />
         <div class="chart-section p-4">
           <highcharts :options="chartOptions"></highcharts>
         </div>
@@ -100,34 +15,41 @@
             either track, monotor or even trimmed
           </p>
         </div>
-        <div class="row">
-          <div class="col-6">
+        <div class="row mt-5">
+          <div class="col-7">
             <div class="export-section">
-              <p>Export the Plot</p>
-              <div class="d-flex">
+              <p class="section-title mb-1 fw-bolder">Export the Plot</p>
+              <div class="d-flex justify-content-between left-side">
                 <div class="d-flex flex-column">
-                  <div class="d-flex align-items-center justify-content-between">
-                    <p class="mb-0 select-title">Filename:</p>
+                  <div class="d-flex align-items-center mb-3 justify-content-between">
+                    <p class="mb-0 select-title fw-bolder">Filename:</p>
                     <img class="pen-icon" :src="pen" alt="" />
                   </div>
                   <input class="" type="text" />
                 </div>
-                <div>
-                  <p class="mb-0 select-title">Export as:</p>
-                  <select-box
-                    title=""
-                    value="value"
-                    :list="listDataValueType"
-                  />
-                  <button class="download"></button>
+                <div class="export-input">
+                  <p class="mb-0 select-title mb-3 fw-bolder">Export as:</p>
+                  <select-box title="" value="select the format" :list="listDataValueType" />
+                  <button class="download">Download</button>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-6">
-            <div>System Logs</div>
-            <div></div>
+          <div class="col">
+            <div class="right-side">
+              <p class="section-title fw-bolder mb-1">System Logs</p>
+              <div class="system-log"></div>
+            </div>
           </div>
+        </div>
+        <div class="bottom-buttons">
+          <button class="Back"> Back </button>
+          <router-link to="dot-plot">
+            <button class="Next"> Next </button>
+          </router-link>
+        </div>
+        <div class="logo">
+          <img :src="logo" alt="">
         </div>
       </div>
     </div>
@@ -137,25 +59,25 @@
 <script>
 import { Chart } from "highcharts-vue";
 import simpleMicrogenetics2 from "@/assets/simpleMicrogenetics2.svg";
-import search from "@/assets/search.svg";
-import arrow from "@/assets/arrow.svg";
 import attention from "@/assets/attention.svg";
 import pen from "@/assets/pen.svg";
+import logo from '@/assets/group55.png';
 import SelectBox from "@/components/SelectBox.vue";
+import Header2 from "@/components/Header2.vue";
+import Accordian from '@/components/Accordian.vue';
+import Selection from '@/components/Selection.vue';
 
 export default {
-  components: { SelectBox },
+  components: { SelectBox, Header2, Accordian, Selection },
   data() {
     return {
       simpleMicrogenetics2,
-      search,
-      arrow,
+      logo,
       pen,
       attention,
-      showAccordian: false,
       highcharts: Chart,
       value: "",
-      listDataValueType: ["png", "jpg"],
+      listDataValueType: ["PNG", "JPG", "TIFF", "SVG", "PDF"],
       chartOptions: {
         chart: {
           type: "scatter",
@@ -192,7 +114,7 @@ export default {
           style: {
             pointerEvents: "auto",
           },
-          hideDelay: 5000,
+          hideDelay: 3000,
         },
         plotOptions: {
           series: {
@@ -257,9 +179,7 @@ export default {
     myFunction() {
       this.chartOptions.series = [{ data: [2, 3, 5] }];
     },
-    toggleAccordian() {
-      this.showAccordian = !this.showAccordian;
-    },
+
   },
   created() {
     window.myFunction = this.myFunction;
@@ -268,123 +188,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.header {
-  justify-content: space-between;
-  align-items: center;
-  display: flex;
-
-  .logo-section {
-    width: 50px;
-    height: 50px;
-  }
-
-  span {
-    font-size: 41px;
-  }
-}
-
-.accordian-section {
-  padding: 1.5rem;
-  border-radius: 15px;
-  border: 3px solid #dbdbdb;
-
-  .content-section {
-    font-size: 28px;
-
-    .left-section {
-      padding: 30px 40px 20px 60px;
-      background-color: #f7f7f7;
-      border-radius: 20px;
-      border: 2px solid #dbdbdb;
-
-      .col-5 {
-        div {
-          display: flex;
-          justify-content: space-between;
-          margin-bottom: 8px;
-        }
-      }
-    }
-
-    .right-section {
-      padding: 15px 30px 90px 30px;
-      background-color: #f7f7f7;
-      border-radius: 20px;
-      border: 2px solid #dbdbdb;
-
-      .box-sections {
-        padding: 2px 22px;
-        background-color: white;
-        border-radius: 30px;
-        display: flex;
-        align-items: center;
-
-        .blue-dot {
-          width: 18px;
-          height: 18px;
-          background-color: #00bfc4;
-          border-radius: 100%;
-          margin-right: 15px;
-        }
-
-        .red-dot {
-          width: 18px;
-          height: 18px;
-          background-color: #f8766d;
-          border-radius: 100%;
-          margin-right: 15px;
-        }
-      }
-
-      @media (max-width: 1560px) {
-        .flex-res {
-          flex-wrap: wrap;
-
-          .ms-4 {
-            margin-top: 20px;
-            margin-left: 0 !important;
-          }
-        }
-      }
-    }
-  }
-
-  .ps-8 {
-    margin-left: 9rem;
-
-    @media (max-width: 1600px) {
-      margin-left: 6rem;
-    }
-  }
-}
-
-.showAccrodian {
-  display: none;
-}
-
-.rotate-img {
-  transform: rotate(180deg);
-}
-
-.step-sections {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 25px;
-
-  span {
-    padding: 10px 93px;
-    font-size: 28px;
-    border-radius: 20px;
-    background-color: #f5f5f5;
-    color: #919191;
-
-    &.active {
-      background-color: white;
-      border: 3px solid #e52620;
-      color: black;
-    }
-  }
+.col-7 {
+  width: 54%;
 }
 </style>
 <style lang="scss">
@@ -410,6 +215,7 @@ export default {
   flex-direction: column;
   padding: 15px;
 }
+
 .remove-button {
   background-color: #e52620;
   color: white;
@@ -417,11 +223,13 @@ export default {
   border-radius: 10px;
   padding: 5px 20px;
 }
+
 .chart-section {
   margin-top: 20px;
   border: 4px solid #d4d4d4;
   border-radius: 15px;
 }
+
 .alert-message {
   margin-top: 30px;
   display: flex;
@@ -432,25 +240,131 @@ export default {
   border-radius: 15px;
   padding-top: 15px;
   padding-bottom: 15px;
+
   p {
     margin: 0;
     font-size: 32px;
     color: #656565;
   }
 }
-.export-section {
+
+.export-section,
+.right-side {
   .pen-icon {
     width: 42px;
     height: 42px;
   }
-  input{
+
+  .left-side {
+    padding: 30px 0px 30px 40px;
+    border: 3px #D4D4D4 solid;
+    border-radius: 10px;
+
+    @media (max-width : 1550px) {
+      flex-direction: column;
+      padding: 30px 40px 30px 40px;
+
+      input {
+        width: auto;
+      }
+
+      .aselect {
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+
+        .selector {
+          width: 100%;
+        }
+      }
+
+      .export-input {
+        margin-top: 15px;
+      }
+    }
+  }
+
+  input {
     height: 60px;
     font-size: 25px;
     border-radius: 8px;
     border: 2px solid #BABABA;
+    width: 350px;
   }
-  .select-title{
+
+  .select-title {
     font-size: 30px;
   }
+
+  .aselect {
+    margin-top: 0;
+
+    .selector {
+      width: 311px;
+    }
+  }
+
+  .download {
+    background-color: black;
+    border: 0;
+    border-radius: 11px;
+    color: white;
+    padding-left: 110px;
+    padding-right: 110px;
+    padding: 10px 110px;
+    font-size: 30px;
+  }
+
+  .section-title {
+    font-size: 40px;
+  }
+
+  .system-log {
+    width: 100%;
+    background-color: #F8F8F8;
+    border: 3px solid #D4D4D4;
+    height: 270px;
+    border-radius: 10px;
+
+    @media (max-width:1550px) {
+      height: 405px;
+    }
+  }
+}
+
+.bottom-buttons {
+  margin-top: 120px;
+  display: flex;
+  justify-content: center;
+
+  .Back {
+    background-color: white;
+    border: 3px solid #E52620;
+    color: #E52620;
+    border-radius: 15px;
+    font-size: 34px;
+    padding: 7px 120px;
+    margin-right: 30px;
+  }
+
+  .Next {
+    background-color: #E52620;
+    border: 0;
+    color: white;
+    border-radius: 15px;
+    padding: 7px 120px;
+    font-size: 34px;
+    font-weight: bolder;
+    border: 3px solid #E52620;
+
+  }
+
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  margin-top: 100px;
 }
 </style>
