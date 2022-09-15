@@ -103,6 +103,9 @@ h1 {
 
     &.lg {
         width: 545px;
+        ul{
+          width: 100.7%;
+        }
     }
 
     .selector {
@@ -147,7 +150,7 @@ h1 {
         position: absolute;
         z-index: 1;
         background: #fff;
-        top: 90%;
+        top: 86%;
         border-top: unset;
         right: -2px;
         border-bottom-left-radius: 10px;
@@ -180,5 +183,6 @@ h1 {
 }
 .item-selected{
     color: black;
+    font-style: normal;
 }
 </style>
