@@ -446,13 +446,15 @@ export default {
           .name {
             background-color: #707070;
             color: white;
-            padding: 2px 15px;
-            border-radius: 5px;
-
+            padding: 5px 17px;
+            border-radius: 9px;
+            font-size: 13.7pt;
+            font-family: sans-serif;
+            font-weight: 700;
           }
 
           .title {
-            font-size: 1.5rem;
+            font-size: 35px;
             padding-left: 10px;
             padding-right: 30px;
             color: #BEBEBE;
@@ -462,7 +464,7 @@ export default {
             border: 2.5px solid #E52620;
 
             .title {
-              font-size: 1.5rem;
+              font-size: 35px;
               color: #343434;
             }
 

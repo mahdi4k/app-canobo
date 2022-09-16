@@ -4,7 +4,7 @@
             <div class="header  justify-content-between">
                 <div class="d-flex align-items-center">
                     <img class="logo-section" :src="simpleMicrogenetics2" alt="" />
-                    <span class="ms-3">GEO-A</span>
+                    <span class="ms-3">Express-A</span>
                 </div>
                 <div class="input-section">
                     <div class="position-relative">

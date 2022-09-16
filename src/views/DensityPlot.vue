@@ -18,20 +18,24 @@
                             <h3>Normalization Method:</h3>
                             <div class="ps-4 pt-4">
                                 <span class="d-flex pb-3 align-items-center">
-                                    <input type="radio" v-model="first" value="0" />
+                                    <input @change="radioChange(second, first)" type="radio" v-model.number="first"
+                                        value="1" />
                                     <span class="ms-3">Linear Scaling</span>
                                 </span>
                                 <span class="d-flex pb-3 align-items-center">
-                                    <input type="radio" v-model="first" value="1" />
+                                    <input @change="radioChange(second, first)" type="radio" v-model.number="first"
+                                        value="2" />
                                     <span class="ms-3">Clipping</span>
                                 </span>
                                 <span class="d-flex pb-3 align-items-center">
-                                    <input type="radio" v-model="first" value="2" />
-                                    <span class="ms-3">Log Scaling</span>
+                                    <input @change="radioChange(second, first)" type="radio" v-model.number="first"
+                                        value="2" />
+                                    <span class="ms-3">Log Scaling </span>
                                 </span>
                                 <span class="d-flex pb-3 align-items-center">
-                                    <input type="radio" v-model="first" value="3" />
-                                    <span class="ms-3">Z-score</span>
+                                    <input @change="radioChange(second, first)" type="radio" v-model.number="first"
+                                        value="2" />
+                                    <span class="ms-3">Z-score </span>
                                 </span>
                             </div>
                         </div>
@@ -39,20 +43,9 @@
                             <h3>Color Scheme</h3>
                             <div class="ps-4 pt-4">
                                 <span class="d-flex pb-3 align-items-center">
-                                    <input type="radio" v-model="second" value="0" />
+                                    <input @change="radioChange(second, first)" type="radio" v-model.number="second"
+                                        value="1" />
                                     <span class="ms-3">Black and White</span>
-                                </span>
-                                <span class="d-flex pb-3 align-items-center">
-                                    <input type="radio" v-model="second" value="1" />
-                                    <span class="ms-3">Analogous</span>
-                                </span>
-                                <span class="d-flex pb-3 align-items-center">
-                                    <input type="radio" v-model="second" value="2" />
-                                    <span class="ms-3">Teradic</span>
-                                </span>
-                                <span class="d-flex pb-3 align-items-center">
-                                    <input type="radio" v-model="second" value="3" />
-                                    <span class="ms-3">Color Blind</span>
                                 </span>
                             </div>
                         </div>
@@ -60,7 +53,7 @@
                             <select-box title="Export the Plot" value="select the format" :list="listDataValueType" />
                         </div>
                         <div>
-                            <a :href="dotPlot" download>
+                            <a :href="heatImg" download>
                                 <button class="download mt-4">Download</button>
                             </a>
                         </div>
@@ -71,16 +64,19 @@
                 </div>
                 <div class="col-9">
                     <div class="chart-img">
-                        <img :src="dotPlot" alt="" />
+                        <div>
+                            <button @click="pcActive" :class="{ active: isPcActive }" class="pc-button">PC</button>
+                        </div>
+                        <img :src="heatImg" alt="" />
                     </div>
                 </div>
             </div>
             <div class="bottom-buttons">
-                <router-link to="chart">
+                <router-link to="bar-plot">
                     <button class="Back">Back</button>
                 </router-link>
-                <router-link to="heat-map">
-                    <button class="Next">Next</button>
+                <router-link to="final-results">
+                    <button class="Next">Go to Final Section</button>
                 </router-link>
             </div>
             <div class="logo">
@@ -96,39 +92,53 @@ import Selection from "@/components/Selection.vue";
 import Header2 from "@/components/Header2.vue";
 import pen from "@/assets/pen.svg";
 import logo from '@/assets/group55.png';
-import dotPlot from "@/assets/dotPlot.png";
+import density1 from "@/assets/density1.png";
+import density2 from "@/assets/density2.png";
 import SelectBox from "@/components/SelectBox.vue";
 
 export default {
     components: { Header2, Accordian, Selection, SelectBox },
     data() {
         return {
+            isPcActive: false,
             pen,
             logo,
-            dotPlot,
-            first: 0,
-            second: 0,
+            first: 1,
+            second: 2,
             listDataValueType: ["PNG", "JPG", "TIFF", "SVG", "PDF"],
             selected: {
                 principal: false,
-                dotPlot: true,
-                heatmap: false,
-                barplot: false,
-                density: false,
-            },
-            greened: {
-                principal: true,
                 dotPlot: false,
                 heatmap: false,
                 barplot: false,
+                density: true,
+            },
+            greened: {
+                principal: true,
+                dotPlot: true,
+                heatmap: true,
+                barplot: true,
                 density: false,
-            }
+            },
+            heatImg: density1
         };
     },
+    methods: {
+        pcActive() {
+            this.isPcActive = !this.isPcActive
+            if (this.isPcActive) {
+                this.heatImg = density2
+            } else {
+                this.heatImg = density1
+
+            }
+        }
+    },
+
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .left-sidebar {
     border: 4px solid #d4d4d4;
     border-radius: 14px;
@@ -248,9 +258,24 @@ export default {
     border-radius: 14px;
 
     img {
-        padding: 74px 18px;
+        padding: 5px 18px;
         width: 100%;
         height: auto;
+    }
+}
+
+.pc-button {
+    background-color: #EAEAEA;
+    color: black;
+    border-radius: 40px;
+    border: 1px solid #EAEAEA;
+    padding: 3px 60px;
+    font-size: 35px;
+    margin-left: 30px;
+    margin-top: 30px;
+
+    &.active {
+        border: 3px solid #E52620;
     }
 }
 </style>

@@ -1,16 +1,16 @@
 <template>
     <div class="step-sections my-5">
-        <span class="active">Principal component analysis</span>
-        <span>Dot Plot</span>
-        <span>Heatmap</span>
-        <span>Bar Plot</span>
-        <span>Density Plot</span>
+        <span :class="{ active: selected.principal, 'green-section': greened.principal }">Principal component analysis</span>
+        <span :class="{ active: selected.dotPlot, 'green-section': greened.dotPlot }">Dot Plot</span>
+        <span :class="{ active: selected.heatmap, 'green-section': greened.heatmap }">Heatmap</span>
+        <span :class="{ active: selected.barplot, 'green-section': greened.barplot }">Bar Plot</span>
+        <span :class="{ active: selected.density, 'green-section': greened.density }">Density Plot</span>
     </div>
 </template>
 
 <script>
 export default {
-
+props:['selected','greened']
 }
 </script>
 
@@ -32,6 +32,11 @@ export default {
       background-color: white;
       border: 3px solid #e52620;
       color: black;
+    }
+    &.green-section{
+      background-color: #ECF8EA;
+      border: 3px solid #79BC88;
+      color: #137129;
     }
   }
 

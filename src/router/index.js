@@ -5,6 +5,10 @@ import TableView from '../views/TableView.vue'
 import Loading from '../views/Loading.vue'
 import ChartView from '../views/ChartView.vue'
 import DotPlot from '../views/DotPlot.vue'
+import BarPlot from '../views/BarPlot.vue'
+import HeatMap from '../views/HeatMap.vue'
+import DensityPlot from '../views/DensityPlot.vue'
+import FinalResults from '../views/FinalResults.vue'
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 
@@ -39,6 +43,28 @@ const routes = [
     path: '/dot-plot',
     name: 'DotPlot',
     component: DotPlot
+  },
+  {
+    path: '/heat-map',
+    name: 'HeatMap',
+    component: HeatMap
+  },
+  {
+    path: '/bar-plot',
+    name: 'barPlot',
+    component: BarPlot
+  },
+  {
+    path: '/density-plot',
+    name: 'DensityPlot',
+    component: DensityPlot
+
+  },
+  {
+    path: '/final-results',
+    name: 'finalResults ',
+    component: FinalResults
+
   }
 ]
 

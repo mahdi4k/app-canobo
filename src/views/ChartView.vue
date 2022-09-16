@@ -4,7 +4,7 @@
       <div class="container">
         <Header2 />
         <Accordian />
-        <Selection />
+        <Selection :selected="selected" :greened="greened" />
         <div class="chart-section p-4">
           <highcharts :options="chartOptions"></highcharts>
         </div>
@@ -71,6 +71,20 @@ export default {
   components: { SelectBox, Header2, Accordian, Selection },
   data() {
     return {
+      selected: {
+        principal: true,
+        dotPlot: false,
+        heatmap: false,
+        barplot: false,
+        density: false,
+      },
+      greened: {
+        principal: false,
+        dotPlot: false,
+        heatmap: false,
+        barplot: false,
+        density: false,
+      },
       simpleMicrogenetics2,
       logo,
       pen,
