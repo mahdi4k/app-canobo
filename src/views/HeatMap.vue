@@ -5,7 +5,7 @@
             <Accordian />
             <Selection :selected="selected" :greened="greened" />
             <div class="row">
-                <div class="col-3 pe-0">
+                <div class="col-3 heatMap pe-0">
                     <div class="left-sidebar">
                         <div class="header-section mb-3 d-flex justify-content-between">
                             <h2>Filename:</h2>
@@ -49,14 +49,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-9">
+                <div class="col-9 heatMap">
                     <div class="chart-img">
                         <img :src="heatImg" alt="" />
                     </div>
                 </div>
             </div>
             <div class="bottom-buttons">
-                <router-link to="heat-map">
+                <router-link to="dot-plot">
                     <button class="Back">Back</button>
                 </router-link>
                 <router-link to="bar-plot">
@@ -247,14 +247,23 @@ export default {
     }
 }
 
-.chart-img {
+.heatMap .Re-Run {
+    margin-top: 180px !important;
+
+}
+
+.heatMap .chart-img {
     border: 4px solid #d4d4d4;
     border-radius: 14px;
 
     img {
-        padding: 74px 18px;
-        width: 100%;
+        padding: 35px 18px;
+        width: 85%;
         height: auto;
+        object-fit: scale-down;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 </style>

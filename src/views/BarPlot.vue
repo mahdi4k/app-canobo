@@ -5,7 +5,7 @@
             <Accordian />
             <Selection :selected="selected" :greened="greened" />
             <div class="row">
-                <div class="col-3 pe-0">
+                <div class="col-3 barPlot pe-0">
                     <div class="left-sidebar">
                         <div class="header-section mb-3 d-flex justify-content-between">
                             <h2>Filename:</h2>
@@ -67,7 +67,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-9">
+                <div class="col-9 barPlot">
                     <div class="chart-img">
                         <img :src="heatImg" alt="" />
                     </div>
@@ -261,14 +261,18 @@ export default {
     }
 }
 
-.chart-img {
+.barPlot .chart-img {
     border: 4px solid #d4d4d4;
     border-radius: 14px;
 
     img {
-        padding: 74px 18px;
-        width: 100%;
+        padding: 35px 18px;
+        width: 95%;
         height: auto;
+        object-fit: scale-down;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 </style>

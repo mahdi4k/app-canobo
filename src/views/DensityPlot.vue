@@ -62,7 +62,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-9">
+                <div class="col-9 densityPlot">
                     <div class="chart-img">
                         <div>
                             <button @click="pcActive" :class="{ active: isPcActive }" class="pc-button">PC</button>
@@ -253,14 +253,18 @@ export default {
     }
 }
 
-.chart-img {
+.densityPlot .chart-img {
     border: 4px solid #d4d4d4;
     border-radius: 14px;
 
     img {
-        padding: 5px 18px;
-        width: 100%;
+        padding: 35px 18px;
+        width: 82%;
         height: auto;
+        object-fit: scale-down;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 

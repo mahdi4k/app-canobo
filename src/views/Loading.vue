@@ -71,7 +71,7 @@ export default {
 
     .titles {
         margin-left: 150px;
-
+        width: 830px;
     }
 }
 

@@ -4,7 +4,7 @@
       <div class="header">
         <div class="d-flex align-items-center">
           <img :src="simpleMicrogenetics2" alt="" />
-          <span class="ms-3">GEO-A</span>
+          <span class="ms-3">Express-A</span>
         </div>
         <div class="input-section py-5">
           <div class="position-relative">
@@ -22,13 +22,13 @@
               </span>
             </div>
             <div class="position-relative">
-              <input v-if="!showCohortButton" @input="inputVal($event)" placeholder="Enter Your Cohort’s Name"
+              <input v-if="!showCohortButton && cohortItems.length < 4" @input="inputVal($event)" placeholder="Enter Your Cohort’s Name"
                 class="runName md ms-4" type="text">
             </div>
           </div>
         </div>
         <div>
-          <button @click="addSelected" v-if="showAddButton" class="submit">submit</button>
+          <button @click="addSelected" v-if="showAddButton" class="submit">Submit</button>
           <img @click="addInput" v-if="showAddIcon" :src="add" alt="">
           <button @click="addCohort" v-if="showCohortButton" class="submit cohort">Add selected samples to this
             cohort</button>
@@ -127,7 +127,6 @@ export default {
       this.cohortItems.push(this.cohortItem);
       this.showCohortButton = true;
       this.showAddButton = false
-      console.log(this.cohortItems);
     },
     addCohort() {
 
@@ -272,6 +271,20 @@ export default {
       padding: 13px 58px;
       border: 3px solid #5E6896;
       background-color: #E5E9FC;
+      border-radius: 10px;
+      font-size: 30px;
+    }
+    .itemSelected2 {
+      padding: 13px 58px;
+      border: 3px solid #BE6820;
+      background-color: #FCEEE5;
+      border-radius: 10px;
+      font-size: 30px;
+    }
+    .itemSelected3 {
+      padding: 13px 58px;
+      border: 3px solid #347096;
+      background-color: #D6F2FF;
       border-radius: 10px;
       font-size: 30px;
     }

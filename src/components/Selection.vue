@@ -1,10 +1,10 @@
 <template>
     <div class="step-sections my-5">
         <span :class="{ active: selected.principal, 'green-section': greened.principal }">Principal component analysis</span>
-        <span :class="{ active: selected.dotPlot, 'green-section': greened.dotPlot }">Dot Plot</span>
+        <span :class="{ active: selected.dotPlot, 'green-section': greened.dotPlot }">Density Plot</span>
         <span :class="{ active: selected.heatmap, 'green-section': greened.heatmap }">Heatmap</span>
         <span :class="{ active: selected.barplot, 'green-section': greened.barplot }">Bar Plot</span>
-        <span :class="{ active: selected.density, 'green-section': greened.density }">Density Plot</span>
+        <span :class="{ active: selected.density, 'green-section': greened.density }">MA Plot</span>
     </div>
 </template>
 

@@ -2,9 +2,16 @@
   <div class="home">
     <div class="container home-section">
       <div class="col-section">
-        <div class="header">
-          <img :src="simpleMicrogenetics2" alt="" />
-          <span class="ms-3">Express-A</span>
+        <div class="header justify-content-between">
+          <div class="d-flex align-items-center">
+            <img :src="simpleMicrogenetics2" alt="" />
+            <span class="ms-3">Express-A</span>
+          </div>
+          <div>
+            <a href="https://www.youtube.com/watch?v=YuqrvjRwrVk">
+              <img class="w-auto h-auto" :src="Youtube" alt="">
+            </a>
+          </div>
         </div>
         <div class="description">
           <span>A modified platform to analyze the microarray expression data from GEO database in a
@@ -18,8 +25,8 @@
           <div class="input-section pe-5 pb-5">
             <p class="mb-2">Please Enter your run name</p>
             <div class="position-relative">
-              <input class="runName" type="text">
-              <span class="runInputIcon"><img :src="inputIcon" alt=""></span>
+              <input @blur="activeTag = false" @focus="activeTag = true" class="runName" type="text">
+              <span class="runInputIcon"><img :class="{activeTag:activeTag}" :src="inputIcon" alt=""></span>
             </div>
           </div>
           <div class="tab-section ps-4">
@@ -30,7 +37,7 @@
                 <span class="title">Upload the data manually</span>
               </div>
               <div @click="useDatabase" :class="DatabaseTab ? 'active' : ''" class="tab-item api-tab">
-                <span class="name">API</span>
+                <span class="name px-4">API</span>
                 <span class="title">Use GEO Database</span>
               </div>
             </div>
@@ -115,10 +122,12 @@
             By Pressing “Start Analysis” you will accept all terms and conditions </span>
         </div>
         <div class="right">
-          <button @click="showAlert" class="demo">Demo Run</button>
+
           <router-link to="table">
-            <button class="analysis">Start Analysis</button>
+            <button class="demo">Demo Run</button>
           </router-link>
+
+          <button @click="showAlert" class="analysis">Start Analysis</button>
         </div>
       </div>
     </div>
@@ -226,6 +235,7 @@ import check from "@/assets/check.svg";
 import question from "@/assets/question.svg";
 import close from "@/assets/close.svg";
 import close2 from "@/assets/close2.svg";
+import Youtube from "@/assets/Youtube.svg";
 import modal from "@/assets/modal.png";
 import SelectBox from '@/components/SelectBox.vue';
 import RangeSlider from "@/components/RangeSlider.vue";
@@ -235,7 +245,7 @@ import uploadfile from "@/assets/uploadfile.svg";
 import Message from "../components/Message.vue";
 
 export default {
-  components: { SelectBox, RangeSlider, vueDropzone: vue2Dropzone, Message ,Footer},
+  components: { SelectBox, RangeSlider, vueDropzone: vue2Dropzone, Message, Footer },
 
   data() {
     return {
@@ -246,10 +256,12 @@ export default {
       question,
       close,
       close2,
+      Youtube,
       modal,
       uploadTab: true,
       DatabaseTab: false,
       isMobile: false,
+      activeTag: false,
       value: 'Please choose an item',
       listDataValueType: ["Raw", "Normalized"],
       listDataValue: ["Microarray ", "RNA-Seq (Count)"],
@@ -341,6 +353,10 @@ export default {
 };
 </script>
 <style lang="scss">
+.activeTag {
+  filter: invert(22%) sepia(86%) saturate(1346%) hue-rotate(310deg) brightness(120%) contrast(89%);
+}
+
 .ml-10 {
   margin-left: 13%;
 
@@ -396,10 +412,10 @@ export default {
         .runName {
           border: unset;
           background-color: #EFEFEF;
-          padding: 12px 10px 12px 52px;
+          padding: 16px 10px 16px 58px;
           width: 520px;
           border-radius: 10px;
-          font-size: 30px;
+          font-size: 35px;
 
           @media (max-width:1550px) {
             width: 380px;
@@ -409,10 +425,10 @@ export default {
         .runInputIcon {
           position: absolute;
           left: 19px;
-          top: 21px;
+          top: 27px;
 
           img {
-            width: 25px;
+            width: 30px;
           }
 
         }
@@ -444,13 +460,14 @@ export default {
           }
 
           .name {
-            background-color: #707070;
+            background-color: #AAAAAA;
             color: white;
-            padding: 5px 17px;
+            padding: 5px 18px;
             border-radius: 9px;
             font-size: 13.7pt;
             font-family: sans-serif;
             font-weight: 700;
+            margin-right: 16px;
           }
 
           .title {
