@@ -12,7 +12,7 @@
           </div>
           <div>
             <a href="https://www.youtube.com/watch?v=YuqrvjRwrVk">
-              <img class="w-auto h-auto" :src="Youtube" alt="">
+              <img class="youtubeIcon" :src="Youtube" alt="">
             </a>
           </div>
         </div>
@@ -763,5 +763,8 @@ export default {
   .input-section {
     border-bottom: unset !important;
   }
+}
+.youtubeIcon{
+  width: 220px !important;
 }
 </style>
