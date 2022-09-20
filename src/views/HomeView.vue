@@ -429,7 +429,7 @@ export default {
         .runInputIcon {
           position: absolute;
           left: 19px;
-          top: 27px;
+          top: 19px;
 
           img {
             width: 30px;
