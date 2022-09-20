@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <div class="container home-section">
+    <div v-if="isMobile">
+      <NotFound :isAccessDenied="true" />
+    </div>
+    <div v-else class="container home-section">
       <div class="col-section">
         <div class="header justify-content-between">
           <div class="d-flex align-items-center">
@@ -243,9 +246,10 @@ import vue2Dropzone from 'vue2-dropzone'
 import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 import uploadfile from "@/assets/uploadfile.svg";
 import Message from "../components/Message.vue";
+import NotFound from "./NotFound.vue"
 
 export default {
-  components: { SelectBox, RangeSlider, vueDropzone: vue2Dropzone, Message, Footer },
+  components: { SelectBox, RangeSlider, vueDropzone: vue2Dropzone, Message,NotFound, Footer },
 
   data() {
     return {
