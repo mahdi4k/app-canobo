@@ -17,6 +17,7 @@ const options = {
 };
 Vue.use(VueRouter)
 Vue.use(Toast, options);
+Vue.prototype.$scrollToTop = () => window.scrollTo(0,0)
 
 const routes = [
   {
@@ -69,7 +70,10 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
+  scrollBehavior() {
+    document.getElementById('app').scrollIntoView({ behavior: 'smooth' });
+}
 })
 
 export default router

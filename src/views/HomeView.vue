@@ -126,7 +126,7 @@
         </div>
         <div class="right">
 
-          <router-link to="table">
+          <router-link @click.native="$scrollToTop" to="table">
             <button class="demo">Demo Run</button>
           </router-link>
 

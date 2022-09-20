@@ -201,12 +201,14 @@ input[type=range]::-moz-range-track {
 
 input[type=range]::-moz-range-thumb {
     box-shadow: none;
-    border: 4px solid #b6e6ad;
-    height: 16px;
-    width: 16px;
-    border-radius: 2px;
+    border: 3px solid #E52620;
+    height: 20px;
+    width: 20px;
+    border-radius: 50px;
     background: #ffffff;
     cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -8px;
 }
 
 input[type=range]::-ms-track {
