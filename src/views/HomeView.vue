@@ -32,7 +32,7 @@
               <span class="runInputIcon"><img :class="{activeTag:activeTag}" :src="inputIcon" alt=""></span>
             </div>
           </div>
-          <div class="tab-section ps-4">
+          <div class="tab-section ps-xxl-4">
             <p class="mb-2">Method</p>
             <div class="d-flex">
               <div @click="uploadManually" :class="uploadTab ? 'active' : ''" class=" tab-item raw-tab me-3">
@@ -416,12 +416,12 @@ export default {
         .runName {
           border: unset;
           background-color: #EFEFEF;
-          padding: 16px 10px 16px 58px;
+          padding: 11px 10px 11px 58px;
           width: 520px;
           border-radius: 10px;
-          font-size: 35px;
+          font-size: 30px;
 
-          @media (max-width:1550px) {
+          @media (max-width:1600px) {
             width: 380px;
           }
         }
@@ -441,25 +441,24 @@ export default {
       .tab-section {
         border-bottom: 1px solid #ccc;
 
-        @media (max-width:1200px) {
+        @media (max-width:1400px) {
           border-bottom: unset;
         }
 
         .tab-item {
-          padding: 13px 20px;
+          padding: 8px 0px 8px 20px;
           border: 2.5px solid #BEBEBE;
           background-color: #F7F7F7;
           border-radius: 10px;
           width: 475px;
           cursor: pointer;
 
-          @media (max-width:1550px) {
+          @media (max-width:1600px) {
             width: 390px;
             white-space: nowrap;
           }
 
           @media (max-width:1400px) {
-            width: 317px;
             white-space: nowrap;
           }
 
@@ -468,14 +467,14 @@ export default {
             color: white;
             padding: 5px 18px;
             border-radius: 9px;
-            font-size: 13.7pt;
+            font-size: 13.2pt;
             font-family: sans-serif;
             font-weight: 700;
             margin-right: 16px;
           }
 
           .title {
-            font-size: 35px;
+            font-size: 30px;
             padding-left: 10px;
             padding-right: 30px;
             color: #BEBEBE;
@@ -485,7 +484,7 @@ export default {
             border: 2.5px solid #E52620;
 
             .title {
-              font-size: 35px;
+              font-size: 30px;
               color: #343434;
             }
 
