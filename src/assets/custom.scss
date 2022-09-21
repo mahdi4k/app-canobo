@@ -4,3 +4,19 @@
         max-width: 1600px;
     }
 }
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 3px rgba(128, 128, 128, 0.603); 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+::-webkit-scrollbar-thumb {
+    background: #acacac; 
+    border-radius: 2px;
+  }
+  
+  /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: gray; 
+  }

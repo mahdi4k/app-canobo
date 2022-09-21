@@ -29,19 +29,19 @@
         </div>
         <div>
           <button @click="addSelected" v-if="showAddButton" class="submit">Submit</button>
-          <img @click="addInput" v-if="showAddIcon" :src="add" alt="">
+          <img v-if="showAddIcon" :src="add" alt="">
           <button @click="addCohort" v-if="showCohortButton" class="submit cohort">Add selected samples to this
             cohort</button>
         </div>
       </div>
-      <table @click="addClassStriped" class="table table-borderless">
+      <table class="table table-borderless">
         <thead>
           <tr>
             <th v-for="col in columns" scope="col" :key="col.key">{{ col.key }}</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="el in data" :key="el.Title">
+          <tr @click="selectedRow(index)" :class="[el.isSelected ?'selected-color' : '',el.rowColor]" v-for="(el,index) in data" :key="el.Title">
             <td>{{ el.Accession }}</td>
             <td>{{ el.Title }}</td>
             <td>{{ el.SourceName }}</td>
@@ -79,24 +79,24 @@ export default {
       simpleMicrogenetics2,
       add,
       data: [
-        { Accession: "GSM052234", Title: 'A519', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '' },
-        { Accession: "GSM052234", Title: 'A599', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '' },
-        { Accession: "GSM052234", Title: 'A539', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '' },
-        { Accession: "GSM052234", Title: 'A529', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '' },
-        { Accession: "GSM052234", Title: 'A559', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '' },
-        { Accession: "GSM052234", Title: 'A569', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '' },
-        { Accession: "GSM052234", Title: 'A579', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '' },
-        { Accession: "GSM052234", Title: 'A589', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '' },
-        { Accession: "GSM052234", Title: 'A279', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '' },
-        { Accession: "GSM052234", Title: 'A541', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '' },
-        { Accession: "GSM052234", Title: 'A542', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '' },
-        { Accession: "GSM052234", Title: 'A543', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '' },
-        { Accession: "GSM052234", Title: 'A544', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '' },
-        { Accession: "GSM052234", Title: 'A545', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '' },
-        { Accession: "GSM052234", Title: 'A546', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '' },
-        { Accession: "GSM052234", Title: 'A547', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '' },
-        { Accession: "GSM052234", Title: 'A548', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '' },
-        { Accession: "GSM052234", Title: 'A549', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '' },
+        { Accession: "GSM052234", Title: 'A519', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '', isSelected:false, rowColor:'' },
+        { Accession: "GSM052234", Title: 'A599', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '', isSelected:false, rowColor:'' },
+        { Accession: "GSM052234", Title: 'A539', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '', isSelected:false, rowColor:'' },
+        { Accession: "GSM052234", Title: 'A529', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '', isSelected:false, rowColor:'' },
+        { Accession: "GSM052234", Title: 'A559', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '', isSelected:false, rowColor:'' },
+        { Accession: "GSM052234", Title: 'A569', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '', isSelected:false, rowColor:'' },
+        { Accession: "GSM052234", Title: 'A579', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '', isSelected:false, rowColor:'' },
+        { Accession: "GSM052234", Title: 'A589', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '', isSelected:false, rowColor:'' },
+        { Accession: "GSM052234", Title: 'A279', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '', isSelected:false, rowColor:'' },
+        { Accession: "GSM052234", Title: 'A541', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '', isSelected:false, rowColor:'' },
+        { Accession: "GSM052234", Title: 'A542', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '', isSelected:false, rowColor:'' },
+        { Accession: "GSM052234", Title: 'A543', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '', isSelected:false, rowColor:'' },
+        { Accession: "GSM052234", Title: 'A544', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '', isSelected:false, rowColor:'' },
+        { Accession: "GSM052234", Title: 'A545', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '', isSelected:false, rowColor:'' },
+        { Accession: "GSM052234", Title: 'A546', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '', isSelected:false, rowColor:'' },
+        { Accession: "GSM052234", Title: 'A547', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '', isSelected:false, rowColor:'' },
+        { Accession: "GSM052234", Title: 'A548', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '', isSelected:false, rowColor:'' },
+        { Accession: "GSM052234", Title: 'A549', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '', isSelected:false, rowColor:'' },
 
       ],
       columns: [
@@ -112,7 +112,8 @@ export default {
       showAddIcon: true,
       showCohortButton: false,
       cohortItem: null,
-      cohortItems: []
+      cohortItems: [],
+      isRowSelected:false,
     }
   },
   methods: {
@@ -128,68 +129,34 @@ export default {
       this.showCohortButton = true;
       this.showAddButton = false
     },
+    selectedRow(index){
+      if (this.showCohortButton) {
+        this.isRowSelected = true;
+        let row = this.data[index];
+        let isSelected = row.isSelected;
+        row.isSelected = !isSelected; 
+      }
+      
+    },
     addCohort() {
 
-      if (this.cohortItems.length === 1) {
-        this.data = [
-          { Accession: "GSM052234", Title: 'A519', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: this.cohortItems[0] },
-          { Accession: "GSM052234", Title: 'A599', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '' },
-          { Accession: "GSM052234", Title: 'A539', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: this.cohortItems[0] },
-          { Accession: "GSM052234", Title: 'A529', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '' },
-          { Accession: "GSM052234", Title: 'A559', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: this.cohortItems[0] },
-          { Accession: "GSM052234", Title: 'A569', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '' },
-          { Accession: "GSM052234", Title: 'A579', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: this.cohortItems[0] },
-          { Accession: "GSM052234", Title: 'A589', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '' },
-          { Accession: "GSM052234", Title: 'A279', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: this.cohortItems[0] },
-          { Accession: "GSM052234", Title: 'A541', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '' },
-          { Accession: "GSM052234", Title: 'A542', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: this.cohortItems[0] },
-          { Accession: "GSM052234", Title: 'A543', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '' },
-          { Accession: "GSM052234", Title: 'A544', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: this.cohortItems[0] },
-          { Accession: "GSM052234", Title: 'A545', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '' },
-          { Accession: "GSM052234", Title: 'A546', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: this.cohortItems[0] },
-          { Accession: "GSM052234", Title: 'A547', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '' },
-          { Accession: "GSM052234", Title: 'A548', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: this.cohortItems[0] },
-          { Accession: "GSM052234", Title: 'A549', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: '' },
-        ];
-        let table = document.querySelector('.table');
-        table.classList.add('stripedOddAdd');
-      }
-      if (this.cohortItems.length === 2) {
-        this.data = [
-          { Accession: "GSM052234", Title: 'A519', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: this.cohortItems[0] },
-          { Accession: "GSM052234", Title: 'A599', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: this.cohortItems[1] },
-          { Accession: "GSM052234", Title: 'A539', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: this.cohortItems[0] },
-          { Accession: "GSM052234", Title: 'A529', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: this.cohortItems[1] },
-          { Accession: "GSM052234", Title: 'A559', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: this.cohortItems[0] },
-          { Accession: "GSM052234", Title: 'A569', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: this.cohortItems[1] },
-          { Accession: "GSM052234", Title: 'A579', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: this.cohortItems[0] },
-          { Accession: "GSM052234", Title: 'A589', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: this.cohortItems[1] },
-          { Accession: "GSM052234", Title: 'A279', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: this.cohortItems[0] },
-          { Accession: "GSM052234", Title: 'A541', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: this.cohortItems[1] },
-          { Accession: "GSM052234", Title: 'A542', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: this.cohortItems[0] },
-          { Accession: "GSM052234", Title: 'A543', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: this.cohortItems[1] },
-          { Accession: "GSM052234", Title: 'A544', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: this.cohortItems[0] },
-          { Accession: "GSM052234", Title: 'A545', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: this.cohortItems[1] },
-          { Accession: "GSM052234", Title: 'A546', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: this.cohortItems[0] },
-          { Accession: "GSM052234", Title: 'A547', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: this.cohortItems[1] },
-          { Accession: "GSM052234", Title: 'A548', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: this.cohortItems[0] },
-          { Accession: "GSM052234", Title: 'A549', SourceName: 'A549', cellType: 'NSCLC', Gender: 'Male', Age: '52', CellLine: this.cohortItems[1] },
-        ];
-        let table = document.querySelector('.table');
-        table.classList.add('stripedEvenAdd');
-      }
+      let inputValue = this.cohortItems.slice(-1)[0] 
 
-      this.showCohortButton = false
-    },
-    addInput() {
+      this.data.forEach(el=>{
+        if (el.isSelected && el.CellLine == '' ) {
+          el.CellLine = inputValue;
+          (this.cohortItems.length == 1 && el.rowColor == '') ? el.rowColor = 'green-row':'';
+          (this.cohortItems.length == 2 && el.rowColor == '') ? el.rowColor = 'pruple-row' : '';
+          (this.cohortItems.length == 3 && el.rowColor == '') ? el.rowColor = 'brown-row' : '';
+          (this.cohortItems.length == 4 && el.rowColor == '') ? el.rowColor = 'blue-row' : '';
+        }
+      })
 
+      this.showCohortButton = false;
+      this.isRowSelected = false;
     },
-    addClassStriped() {
-      if (this.cohortItems.length) {
-        let table = document.querySelector('.table');
-        table.classList.add('stripedOdd')
-      }
-    }
+ 
+
   }
 }
 </script>
@@ -228,8 +195,21 @@ export default {
   }
 }
 
-
-
+.selected-color{
+  background-color: #FCF8E5;
+}
+.green-row{
+  background-color: #E5FCF7 !important;
+}
+.pruple-row{
+   background-color: #E5E9FC !important;
+}
+.brown-row{
+ background-color: #FCEEE5 !important;
+}
+.blue-row{
+ background-color: #D6F2FF !important;
+}
 .header {
   justify-content: space-between;
   align-items: center;
