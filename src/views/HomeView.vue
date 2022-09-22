@@ -238,7 +238,7 @@ import check from "@/assets/check.svg";
 import question from "@/assets/question.svg";
 import close from "@/assets/close.svg";
 import close2 from "@/assets/close2.svg";
-import Youtube from "@/assets/Youtube.svg";
+import Youtube from "@/assets/yt.png";
 import modal from "@/assets/modal.png";
 import SelectBox from '@/components/SelectBox.vue';
 import RangeSlider from "@/components/RangeSlider.vue";
@@ -357,6 +357,9 @@ export default {
 };
 </script>
 <style lang="scss">
+.home{
+  border-top: 14px solid #E52620;
+}
 .activeTag {
   filter: invert(22%) sepia(86%) saturate(1346%) hue-rotate(310deg) brightness(120%) contrast(89%);
 }

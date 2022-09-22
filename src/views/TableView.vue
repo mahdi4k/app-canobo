@@ -70,6 +70,7 @@ import search from '@/assets/search.svg';
 import logo from '@/assets/group55.png';
 import add from '@/assets/add.svg';
 import simpleMicrogenetics2 from "@/assets/simpleMicrogenetics2.svg";
+import Alert from "../components/Alert.vue";
 
 export default {
   data() {
@@ -139,21 +140,27 @@ export default {
       
     },
     addCohort() {
+      if (this.isRowSelected) {
+         let inputValue = this.cohortItems.slice(-1)[0] 
 
-      let inputValue = this.cohortItems.slice(-1)[0] 
-
-      this.data.forEach(el=>{
-        if (el.isSelected && el.CellLine == '' ) {
-          el.CellLine = inputValue;
-          (this.cohortItems.length == 1 && el.rowColor == '') ? el.rowColor = 'green-row':'';
-          (this.cohortItems.length == 2 && el.rowColor == '') ? el.rowColor = 'pruple-row' : '';
-          (this.cohortItems.length == 3 && el.rowColor == '') ? el.rowColor = 'brown-row' : '';
-          (this.cohortItems.length == 4 && el.rowColor == '') ? el.rowColor = 'blue-row' : '';
-        }
+         this.data.forEach(el=>{
+          if (el.isSelected && el.CellLine == '' ) {
+            el.CellLine = inputValue;
+            (this.cohortItems.length == 1 && el.rowColor == '') ? el.rowColor = 'green-row':'';
+            (this.cohortItems.length == 2 && el.rowColor == '') ? el.rowColor = 'pruple-row' : '';
+            (this.cohortItems.length == 3 && el.rowColor == '') ? el.rowColor = 'brown-row' : '';
+            (this.cohortItems.length == 4 && el.rowColor == '') ? el.rowColor = 'blue-row' : '';
+          }
       })
 
       this.showCohortButton = false;
       this.isRowSelected = false;
+      }else{
+        this.$toast(Alert, {
+          icon: false
+        });
+      }
+
     },
  
 
@@ -171,30 +178,7 @@ export default {
   cursor: pointer;
 }
 
-.stripedOdd {
-  tr:nth-child(odd) {
-    background-color: #FCF8E5;
-  }
-}
-
-.stripedOddAdd {
-  tr:nth-child(odd) {
-    background-color: #E5FCF7;
-  }
-}
-
-.stripedEvenAdd {
-  tr:nth-child(even) {
-    background-color: #E5E9FC;
-  }
-}
-
-.stripedEven {
-  tr:nth-child(even) {
-    background-color: #FCF8E5;
-  }
-}
-
+ 
 .selected-color{
   background-color: #FCF8E5;
 }
