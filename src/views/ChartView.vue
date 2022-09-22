@@ -43,7 +43,9 @@
           </div>
         </div>
         <div class="bottom-buttons">
+          <router-link to="table">
           <button class="Back"> Back </button>
+          </router-link>
           <router-link to="dot-plot">
             <button class="Next"> Next </button>
           </router-link>
@@ -120,7 +122,7 @@ export default {
             <span>PC1 : -0.0987</span>
             <div class='d-flex justify-content-between'>
             <div><span>PC2 : -0.9984</span></div>
-            <button class="remove-button" onclick="myFunction()">Remove</button>
+            <button class="remove-button" onclick="changeDataTable()">Remove</button>
             </div>
             </div>
             </div>`;
@@ -128,7 +130,7 @@ export default {
           style: {
             pointerEvents: "auto",
           },
-          hideDelay: 3000,
+          hideDelay: 2000,
         },
         plotOptions: {
           series: {
@@ -190,13 +192,14 @@ export default {
   },
 
   methods: {
-    myFunction() {
-      this.chartOptions.series = [{ data: [2, 3, 5] }];
+    changeDataTable() {
+      let arrayData = Array.from({length: 10}, () => Math.floor(Math.random() * 10));
+      this.chartOptions.series = [{ data: arrayData }];
     },
 
   },
   created() {
-    window.myFunction = this.myFunction;
+    window.changeDataTable = this.changeDataTable;
   },
 };
 </script>

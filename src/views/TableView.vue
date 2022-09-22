@@ -53,11 +53,10 @@
 
         </tbody>
       </table>
-      <router-link to="loading">
-        <div :class="cohortItems.length ? '' : 'disable'" class="analyse my-5">
-          <button>Analyse</button>
+      
+        <div  :class="cohortItems.length ? '' : 'disable'" class="analyse my-5">
+             <button  @click="moveToLoading">Analyse</button>
         </div>
-      </router-link>
       <div class="logo">
         <img :src="logo" alt="">
       </div>
@@ -156,14 +155,26 @@ export default {
       this.showCohortButton = false;
       this.isRowSelected = false;
       }else{
-        this.$toast(Alert, {
+        this.$toast(<Alert title="please select a row of table"/>, {
           icon: false
         });
       }
 
     },
  
+    showAlert(){
+      
 
+    }, 
+    moveToLoading(){
+     if (this.cohortItems.length> 0) {
+        this.$router.push({ name: 'loading' })
+      }else{
+          this.$toast(<Alert title="Please Add a Cohort’s Name "/>, {
+          icon: false
+        }); 
+      }
+    }
   }
 }
 </script>

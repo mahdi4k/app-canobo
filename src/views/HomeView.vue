@@ -245,11 +245,11 @@ import RangeSlider from "@/components/RangeSlider.vue";
 import vue2Dropzone from 'vue2-dropzone'
 import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 import uploadfile from "@/assets/uploadfile.svg";
-import Message from "../components/Message.vue";
+import Alert from "../components/Alert.vue";
 import NotFound from "./NotFound.vue"
 
 export default {
-  components: { SelectBox, RangeSlider, vueDropzone: vue2Dropzone, Message,NotFound, Footer },
+  components: { SelectBox, RangeSlider, vueDropzone: vue2Dropzone,Alert,NotFound, Footer },
 
   data() {
     return {
@@ -341,7 +341,7 @@ export default {
       this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     },
     showAlert() {
-      this.$toast(Message, {
+      this.$toast(<Alert title="Unfortunately this feature is not available now."/>, {
         icon: false
       });
     },

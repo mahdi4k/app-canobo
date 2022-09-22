@@ -4,7 +4,7 @@
             <img :src="error" alt="">
             <h5 class="mb-0 ms-3">Error message </h5>
         </div>
-        <span class="mt-3">please select a row of table</span>
+        <span class="mt-3">{{title}}</span>
     </div>
 </template>
 
@@ -12,6 +12,7 @@
 import error from "@/assets/error.svg";
 
 export default {
+    props:['title'],
     data() {
         return {
             error
